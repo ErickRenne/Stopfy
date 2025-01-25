@@ -195,7 +195,7 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
         display: none;
     }
 
-    #divshow{
+    .box-left{
         display: none;
     }
     body {

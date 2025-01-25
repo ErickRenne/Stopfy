@@ -12,6 +12,8 @@ main {
 
 }
 
+
+
 header {
     width: auto;
     height: 50px;
@@ -36,13 +38,11 @@ header {
     font-family: 'Arial', sans-serif;
     outline: none; /* Remove a borda azul no foco */
     box-sizing: border-box; 
-    border: none;
 }
 
 .Barra-de-pesquisa form button{
     height: 40px; 
-    border: none;   
-    border-left: 1px black ;
+    height: 40px;
     width: 50px;
     background: rgb(68, 68, 68, 0.27);
     border-bottom-right-radius: 25px;
@@ -57,15 +57,13 @@ header {
 .box-right {
     width: 75%;
     height: auto;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid #ccc;
-    
+    border-radius: 10px;
+
 }
 
 .box-left {
     width: 25%;
-    height: 455px;
+    height: 450px;
     border-radius: 10px;
     margin-right: 24px;
     position: sticky;
@@ -74,13 +72,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-}
-.fazendeiro{
-    display: flex;
-    
-}
-.fazendeiro > p{
-    padding-left: 5px;
+
 }
 
 header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
@@ -89,18 +81,11 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
     color: rgba(255, 255, 255, 0.62);
 }
 
-/* body {
-    margin: 0;
-    background-color: #121212;
-    color: #fff;
-} */
-
 .container {
     display: flex;
     flex-direction: column;
     gap: 32px;
     padding: 16px;
-            transition: transform 0.5s ease-in-out;
 }
 
 .header {
@@ -133,8 +118,6 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
-    min-width: 100%;
-    transition: opacity 0.5s;
 }
 
 .titulo {
@@ -159,6 +142,7 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
     position: relative;
     overflow: hidden;
 }
+
 #divshow{
     width: 80%;
     height: 250px;
@@ -178,51 +162,8 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
 }
 #player{
     width:100%;
-}   
-.slider{
-  margin: 0 auto;
-    width: 400px;
-    overflow: hidden;
-    height: 200px;
-    
-}
-.slides{  
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    
 }
 
-.slides-musica{
-    min-width: 100%;
-    transition: opacity 0.5s;
-    /* width: 200px;
-    height: 200px; */
-     
-    width: 250px;
-    height: 200px;
-    background-color: #e63946;
-    border-radius: 8px;
-     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow: hidden;
-    
-}
-.slides-musica button{
-    overflow: visible;
-}
-
-.slides-musica img{
-    width: 100%;
-    display: block;
-    border-radius: 10px;
-}
-.musica1:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-}
 .musica:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
@@ -246,121 +187,22 @@ header,.box-left,.box-right,.Barra-de-pesquisa form #Pesquisar {
     width: 100%;
 }
 
-.carousel-buttons {
-    position: absolute;
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-}
-.carousel-buttons button {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-.carousel-buttons button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-p{
-    width: 75px;
-    height: 20px;
-    border-radius: 15px;
-    background: rgb(54, 54, 54, 0.9);
-    cursor: pointer;
-    text-align: center;
-}
-@media (min-width: 1024px) {
-    body{
-        background-color: antiquewhite;
-    }
-    .Barra-de-pesquisa-mob, .menu-reduzido{
-        visibility: hidden; 
-        width: 0;
-    }
-    .menu-reduzido{
-        background-color: #e63946;
-        background: rgb(54, 54, 54, 0.5);
-    }
-}
 @media (max-width: 768px) {
+    .Barra-de-pesquisa{
+        display: none;
+    }
+    header>p{
+        display: none;
+    }
 
-    p{
-        font-size: small;
-        width: 50px;
-        height: 20px;
-        border-radius: 15px;
-        background: rgb(54, 54, 54, 0.9);
-        margin: 0;
-        cursor: pointer;
-    }
-    .menu-reduzido{
-        color: rgba(255, 255, 255, 0.62);
-        border: 0;
-        background: rgb(54, 54, 54, 0.9);
-        width: 50px;
-        height: 40px;
-        border-radius: 100px;  
-    }
-    .botão-reduzido{
-        width: 50px;
-        height: 40px;
-        border: 0;
-        background: rgb(54, 54, 54, 0.9);
-        border-radius: 100px;    
+    .box-left{
+        display: none;
     }
     body {
-        color: rgba(255, 255, 255, 0.62);
+    background-color: lightblue;
     }
-    .header , .header-icon, .fazendeiro,
-    .Barra-de-pesquisa{
-        visibility: hidden; 
-        width: 0;
-    }
-    .Barra-de-pesquisa-mob{
-        justify-content:  flex-end ;
-        width:65vh;
-        display: flex;
-        margin-right: 15px;
-    }
-
     main{
-        margin: 0;
         display: flex;
-        flex-wrap: wrap;     
-        flex-direction: column-reverse;   
+        justify-content: center;
     }
-    .box-left{  
-        /* height: 125px;
-        margin: 0;
-        width: 100%;
-        position: sticky;
-        top: 0;
-        padding: 0;
-        order: 1;
-        z-index: 1;
-        border-radius: 0;
-        /* display: none; */
-        height: 125px;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        position: sticky;
-        top: 20px; /* Altera para grudar no topo */
-        z-index: auto; /* Ajuste do z-index */
-        border-radius: 0;
-        box-sizing: border-box; 
-    }
-    .box-right {
-        width: 100%;
-        height: auto;
-        border-radius: 0px;
-        padding: 0;
-        order: 2;
-        
-    }
-} 
-    
+}
