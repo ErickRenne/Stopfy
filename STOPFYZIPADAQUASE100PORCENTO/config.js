@@ -3,6 +3,9 @@ const items = document.querySelectorAll('.slides-musica'); // Seleciona todas as
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
 const totalItems = items.length;
+const divShow = document.getElementById('divshow');
+const audio = document.getElementById('player');
+const audioSource = document.getElementById('audioSource');
 
 let currentIndex = 0;
 const intervalTime = 3000; // Tempo para troca automática (em ms)
@@ -10,9 +13,7 @@ const intervalTime = 3000; // Tempo para troca automática (em ms)
 function updateCarousel() {
     const itemWidth = items[0].offsetWidth; // Largura de um item
     container.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-    // container.style.transform     = `translateX(-${currentIndex * 100}%)`;
-};
-
+}
 
 function showNext() {
     currentIndex = (currentIndex + 1) % totalItems;
@@ -37,32 +38,47 @@ prevButton.addEventListener('mouseenter', () => clearInterval(autoSlide));
 nextButton.addEventListener('mouseleave', () => autoSlide = setInterval(showNext, intervalTime));
 prevButton.addEventListener('mouseleave', () => autoSlide = setInterval(showNext, intervalTime));
 
-const divShow = document.getElementById('divshow');
-const musicDivs = document.querySelectorAll('.musica');
-const audio = document.getElementById('player');
-const audioSource = document.getElementById('audioSource');
+// Busca e clique para atualizar a divshow
+const botão = document.querySelector('#submitbtn');
+const autores = document.querySelectorAll('.musica-autor');
+const musicas = document.querySelectorAll('.musica, .slides-musica');
 
-  // Adiciona um evento de clique a cada div com a classe "musica"
-  musicDivs.forEach((div) => {
-    div.addEventListener('click', () => {
-      // Obtém a imagem de fundo da div clicada
-      const bgImage = window.getComputedStyle(div).backgroundImage;
+// Função para atualizar a divshow
+function updateDivShow(element) {
+    const bgImage = window.getComputedStyle(element).backgroundImage;
+    const newSrc = element.getAttribute('data-music');
+    const titulo = element.querySelector('.musica-titulo')?.textContent || '';
+    const autor = element.querySelector('.musica-autor')?.textContent || '';
 
-      // Define a mesma imagem de fundo na div "divshow"
-      divShow.style.backgroundImage = bgImage;
+    divShow.style.backgroundImage = bgImage;
+    divShow.innerHTML = `<div class="titulo">${titulo}</div><div class="autor">${autor}</div>`;
+    audioSource.src = newSrc;
+    audio.load();
+    audio.play();
+}
 
-      // Copia o conteúdo interno da div clicada para a div "divshow"
-      divShow.innerHTML = div.innerHTML;
+// Evento de busca
+botão.addEventListener("click", function (event) {
+    event.preventDefault();
+    const pesquisa = document.querySelector('#Pesquisar').value.toLowerCase();
+    let encontrado = false;
 
-      // Obtém o caminho da música a partir do atributo "data-music" da div clicada
-      const newSrc = div.getAttribute('data-music');
+    musicas.forEach(function (musicaElemento) {
+        const titulo = musicaElemento.querySelector('.musica-titulo')?.textContent.toLowerCase() || '';
+        const autor = musicaElemento.querySelector('.musica-autor')?.textContent.toLowerCase() || '';
 
-      // Atualiza o src do áudio com o novo arquivo
-      audioSource.src = newSrc;
-
-      // Recarrega o áudio para que a nova música comece a tocar
-      audio.load();
-      audio.play();
+        if (titulo.includes(pesquisa) || autor.includes(pesquisa)) {
+            updateDivShow(musicaElemento);
+            encontrado = true;
+        }
     });
-  });
 
+    if (!encontrado) {
+        alert("Música ou autor não encontrado.");
+    }
+});
+
+// Evento de clique nas músicas
+musicas.forEach((musica) => {
+    musica.addEventListener('click', () => updateDivShow(musica));
+});
